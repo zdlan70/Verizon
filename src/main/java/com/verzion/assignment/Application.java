@@ -17,7 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application {
 	public static void main(String[] args) throws Exception {
-		if (args.length > 0 && args[0] == "testRest") { // testRest
+		if (args.length > 0 && args[0].equals("testRest")) { // testRest
 			testRest();
 		} else { // standalone
 			SpringApplication.run(DepartmentApplication.class);
@@ -28,7 +28,6 @@ public class Application {
 
 	static void testRest() throws Exception {
 		String[] urls = {
-
 				"http://localhost:8080/department/save?name=Computer&min_salary_range=10000&max_salary_range=20000",
 				"http://localhost:8080/department/save?name=Sales&min_salary_range=11000&max_salary_range=23999",
 				"http://localhost:8080/department/save?name=Marketing&min_salary_range=30000&max_salary_range=50000",
@@ -37,7 +36,14 @@ public class Application {
 
 				"http://localhost:8080/department/query?name=Accounting",
 
-				"http://localhost:8080/employee/save?firstName=f&lastName=l&salary=10000&department=1&manager=1" };
+				"http://localhost:8080/employee/save?firstName=f&lastName=l&salary=100000&department=1",
+				"http://localhost:8080/employee/save?firstName=f2&lastName=l2&salary=10000&department=1&manager=1",
+				"http://localhost:8080/employee/query?id=2",				
+				"http://localhost:8080/employee/delete?id=2",
+				"http://localhost:8080/employee/query?id=2",
+				"http://localhost:8080/employee/save?firstName=f2&lastName=l2&salary=10000&department=1&manager=1",
+				"http://localhost:8080/employee/update?id=3&salary=50000"
+		};
 
 		Arrays.asList(urls).forEach(url -> sendGet(url));
 	}
@@ -57,7 +63,7 @@ public class Application {
 			System.out.println("\nSending 'GET' request to URL : " + url);
 			System.out.println("Response Code : " + responseCode);
 
-			System.out.println(getResponse(con));
+			System.out.println(getResponse(con)+"\n\n\n");
 		} catch (Exception ex) {
 			throw new RuntimeException(ex);
 		}
