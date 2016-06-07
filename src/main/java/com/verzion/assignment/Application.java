@@ -17,7 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application {
 	public static void main(String[] args) throws Exception {
-		if (args.length > 0 && args[0].equals("testRest")) { // testRest
+		if (args.length > 0) { // testRest
 			testRest();
 		} else { // standalone
 			SpringApplication.run(DepartmentApplication.class);
@@ -38,11 +38,15 @@ public class Application {
 
 				"http://localhost:8080/employee/save?firstName=f&lastName=l&salary=100000&department=1",
 				"http://localhost:8080/employee/save?firstName=f2&lastName=l2&salary=10000&department=1&manager=1",
-				"http://localhost:8080/employee/query?id=2",				
+				"http://localhost:8080/employee/save?firstName=f2&lastName=l2&salary=10000&department=1&manager=2",
+				
+				"http://localhost:8080/employee/queryAll",
+				"http://localhost:8080/employee/queryWithId?id=2",				
 				"http://localhost:8080/employee/delete?id=2",
-				"http://localhost:8080/employee/query?id=2",
+				"http://localhost:8080/employee/queryWithId?id=2",
 				"http://localhost:8080/employee/save?firstName=f2&lastName=l2&salary=10000&department=1&manager=1",
-				"http://localhost:8080/employee/update?id=3&salary=50000"
+				"http://localhost:8080/employee/update?id=1&salary=50000",
+				"http://localhost:8080/employee/queryWithId?id=1"
 		};
 
 		Arrays.asList(urls).forEach(url -> sendGet(url));
