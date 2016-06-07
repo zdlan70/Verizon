@@ -17,7 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application {
 	public static void main(String[] args) throws Exception {
-		if (args.length > 0) { // testRest
+		if (args.length > 1) { // testRest
 			testRest();
 		} else { // standalone
 			SpringApplication.run(DepartmentApplication.class);
